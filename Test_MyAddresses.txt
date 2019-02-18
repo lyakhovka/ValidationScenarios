@@ -1,0 +1,67 @@
+Functional
+	'My Addresses' page
+			1.Validate if pagination works correctly
+				add 20 addresses => only 1 page should be available
+				add 21 addresses => two pages should be available
+				remove 1 address => only 1 page should be available
+				remove all addresses => only 1 page should be available
+			2.Validate buttons enabling/disabling
+				remove all addresses => 'Add' button is enabled; 'Delete' button is disabled; 'Edit' button is disabled.
+				add two addresses, select one address => 'Add' button is enabled; 'Delete' is enabled; 'Edit' is enabled.
+				select two addresses => 'Add' is enabled; 'Delete' is enabled; 'Edit' is disabled.
+	'Edit' functionality
+			1.Validate edit work
+				select an address, click edit => edit page is opened, address field is populated with selected address
+				update the address with new valid value, apply changes => you gets back to 'My Addresses' page, addresses list contains new address and doesn't contain initial address
+				select and address, click edit, cancel editing => you gets back to 'My Addresses' page,	the address is present in the list without changes.
+				select and address, click edit, update the address with incorrect value, apply => you stays on edit page, error message is shown.
+	'Delete' functionality
+			1.Validate removing
+				select one address, click 'Delete' => confirmation is shown
+				select one address, click 'Delete', confirm => the address is removed, you can't find it in the list
+				select one address, click 'Delete', cancel => nothing happens, no addresses are removed.
+				select two addresses, click 'Delete' => confirmation is shown
+				select two addresses, click 'Delete', confirm => both addresses are removed, you can't find them in the list
+				select two addresses, click 'Delete', cancel => nothing happens, no addresses are removed.
+	'New Address' page
+			1.Validate address filed	
+				start typing address => dropdown with suggestions is shown. The suggestions match the value you have set.
+				clear address field => dropdown is not shown.
+			2.Validate 'location' button functionality
+				click 'location' button => address field is populated with you current address.
+				edit the address => dropdown with suggestions is shown.	
+			3.Validate 'Validate' functionality
+				set some invalid value in the address field: 	empty
+																numeric
+																spec symbols
+																unicode
+																address without street
+																address without city
+																address without country
+																just invalid address (with two different countries in instance)
+				and click 'Validate' => validation failed, error message is shown, you stays on the same page.
+			4.Validate 'Skip validation' functionality
+				set some invalid value and click 'Skip validation' => no error messages shown, you gets to 'My Addresses' page, the address is added to the list.
+															
+								
+Usability
+	Check if hints are shown on mouseover for all fields and buttons.
+	Check if common hotkeys work fine
+	Check if tab order is expected
+	Check page appearance and functionality on different browsers and devices
+	
+	 
+Accessibility
+	Check if sound instructions exists and correct.
+	
+Security
+	While you are on 'My Addresses' page, copy the URL, log out and try to navigate the URL => you are redirected to login dialog 
+	Check the page source => there shouldn't be mentioned any credentials, dev/QA environments addresses, names of developers.
+	Try to set following in 'Address' field and click 'Validate'/'Skip validation': <script>alert(1)</script> => no alert should appears, the input should be treated like a string.
+	
+Performance
+	Perform load testing: 
+		verify if page response is not longer then expected when amount of users not higher then stated in requirements. Execute scenarios when amount of users increases gradualy and onetime rise of users to maximum amount.
+	Perform stress testing:
+		verify page behavior when amount of concurrent users increases over the amount stated in requirements.
+		verify there is no data loss in case servers are shutted down.
